@@ -55,61 +55,66 @@ export default function Login() {
         );
         if (user) {
           setForm(initialForm);
-          navigate("/main");
-        } else {
-          navigate("/error");
+          navigate("/success");
         }
       });
   };
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input
-          id="exampleEmail"
-          name="email"
-          placeholder="Enter your email"
-          type="email"
-          onChange={handleChange}
-          value={form.email}
-          invalid={!!errors.email}
-          valid={isValid && !errors.email && form.email.trim() !== ""}
-        />
-        <FormFeedback>{errors.email}</FormFeedback>
-      </FormGroup>
-      <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input
-          id="examplePassword"
-          name="password"
-          placeholder="Enter your password "
-          type="password"
-          onChange={handleChange}
-          value={form.password}
-          invalid={!!errors.password}
-          valid={isValid && !errors.password && form.password.trim() !== ""}
-        />
-        <FormFeedback>{errors.password}</FormFeedback>
-      </FormGroup>
-      <FormGroup check>
-        <Input
-          id="terms"
-          name="terms"
-          checked={form.terms}
-          type="checkbox"
-          onChange={handleChange}
-          invalid={!!errors.terms}
-        />{" "}
-        <FormFeedback>{errors.terms}</FormFeedback>
-        <Label htmlFor="terms" check>
-          I agree to terms of service and privacy policy
-        </Label>
-      </FormGroup>
-      <FormGroup className="text-center p-4">
-        <Button color="primary" disabled={!isValid}>
-          Sign In
-        </Button>
-      </FormGroup>
-    </Form>
+    <div class="container">
+      <div class="login-card">
+        <h2>Sign In</h2>
+        <form id="loginForm" onSubmit={handleSubmit}>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              class="form-control"
+              onChange={handleChange}
+            />
+            <div class="invalid-feedback" id="emailError"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              class="form-control"
+              onChange={handleChange}
+            />
+            <div class="invalid-feedback" id="passwordError"></div>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              onChange={handleChange}
+            />
+            <label for="terms" class="checkbox-label">
+              I agree to terms of service and privacy policy
+            </label>
+            <div class="invalid-feedback" id="termsError"></div>
+          </div>
+
+          <div class="form-group text-center">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="submitBtn"
+              disabled
+            >
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
