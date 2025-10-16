@@ -63,6 +63,7 @@ export default function Login() {
           setForm(initialForm);
           navigate("/success");
         } else {
+          navigate("/login");
           setErrors({
             submit: "Invalid email or password. Please try again.",
           });
@@ -106,7 +107,9 @@ export default function Login() {
               value={form.email}
             />
             {errors.email && (
-              <div className="invalid-feedback show">{errors.email}</div>
+              <div id="emailError" className="invalid-feedback show">
+                {errors.email}
+              </div>
             )}
           </div>
 
@@ -122,7 +125,9 @@ export default function Login() {
               value={form.password}
             />
             {errors.password && (
-              <div className="invalid-feedback show">{errors.password}</div>
+              <div id="passwordError" className="invalid-feedback show">
+                {errors.password}
+              </div>
             )}
           </div>
 
@@ -138,12 +143,15 @@ export default function Login() {
               I agree to terms of service and privacy policy
             </label>
             {errors.terms && (
-              <div className="invalid-feedback show">{errors.terms}</div>
+              <div id="termsError" className="invalid-feedback show">
+                {errors.terms}
+              </div>
             )}
           </div>
 
           <div className="form-group text-center">
             <button
+              id="submitBtn"
               type="submit"
               className="btn btn-primary"
               disabled={!isValid}
